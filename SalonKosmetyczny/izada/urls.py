@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AboutPage,BlogPage,BlogsinglePage,ContactPage,IndexPage,ServicesPage,WorkPage
+from .views import AboutPage,BlogPage,BlogsinglePage,ContactPage,IndexPage,ServicesPage,WorkPage 
 
 urlpatterns = [
  path('', IndexPage,name='index'),

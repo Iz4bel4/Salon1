@@ -51,22 +51,24 @@
               </div>
             </div>
           </div>
-          
-        <div class="row mt-5">
-          <div class="col text-center">
-            <div class="block-27">
-              <ul>
-                <li><a href="#">&lt;</a></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&gt;</a></li>
-              </ul>
+        <!--TODO: wszystkei zdjecia tej samej wielkosci-->  
+        {% for blog in blogs %}
+          <div class="col-md-4 d-flex">
+          	<div class="blog-entry align-self-stretch">
+               <img src="{{ blog.image.url }}" alt="{{ blog.topic }}" style="width: 243.42px; height:270px">
+            <div class="text py-4 d-block">
+              <div class="meta">
+              <div><a href="#">{{ blog.my_date }}</a></div>
+                <div><a href="#">{{ blog.author }}</a></div>
+            </div>
+                <div class="blog-icon">
+                    <h3 class="heading mt-2">{{ blog.topic }}</h3>
+                    <p>{{ blog.first_sentence }}</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+          {% endfor %}
       </div>
     </section>
   {% endblock content %}
