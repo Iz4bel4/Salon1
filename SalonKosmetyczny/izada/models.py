@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib import admin
 import datetime
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class OfferType:
@@ -33,6 +34,8 @@ class WorkPictures(models.Model):
 
     def __str__(self):
        return str(self.image)
+    
+
 
 class Blog(models.Model):
     my_date = models.DateField(default=datetime.date(1111, 1, 1))
@@ -40,6 +43,21 @@ class Blog(models.Model):
     image = models.ImageField(upload_to='static/images/')
     topic = models.CharField(max_length=200)
     first_sentence = models.CharField(max_length=200, default='')
-
+    content = RichTextField()
+    
     def __str__(self):
         return self.topic
+
+class Comment(models.Model):
+    blog = models.ForeignKey(Blog,on_delete=models.CASCADE,related_name='comments')
+    name = models.CharField(max_length=80)
+    email = models.EmailField()
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['created_on']
+
+    def __str__(self):
+        return 'Comment {} by {}'.format(self.body, self.name)

@@ -10,7 +10,7 @@
 		              <h2 class="h4">Informacje Kontaktowe</h2>
 		            </div>
 		            <div class="col-md-12 mb-3">
-		              <p><span>Adres:</span> Wojska Polskiego, Płońsk</p>
+		              <p><span>Adres:</span> Wojska, XYZ</p>
 		            </div>
 		            <div class="col-md-12 mb-3">
 		              <p><span>Telefon:</span> <a href="tel://600452314">+48 000000000</a></p>
@@ -24,28 +24,32 @@
 							</div>
 						</div>
 						<div class="col-md-1"></div>
+			
             <div class="col-md-6">
-              <form action="#" class="contact-form">
+			  
+              <form method="POST" action="{% url 'contact' %}" class="contact-form">
+				{% csrf_token %}
               	<div class="row">
               		<div class="col-md-6">
 		                <div class="form-group">
-		                  <input type="text" class="form-control" placeholder="Imie Nazwisko">
+		                  <input type="text" name='name' class="form-control" placeholder="Imie Nazwisko" required>
 		                </div>
 	                </div>
 	                <div class="col-md-6">
 		                <div class="form-group">
-		                  <input type="text" class="form-control" placeholder="e-mail">
+		                  <input type="text" name='emailpassedbytheuser'  class="form-control" placeholder="e-mail" required>
 		                </div>
 		                </div>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Temat">
+                  <input type="text" name='topic' class="form-control" placeholder="Temat">
                 </div>
                 <div class="form-group">
-                  <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Wiadomość"></textarea>
+                  <textarea name="message" id="" cols="30" rows="7" class="form-control" placeholder="Wiadomość" required></textarea>
                 </div>
                 <div class="form-group">
-                  <input type="submit" value="Wyślij wiadomość" class="btn btn-primary py-3 px-5">
+					<button type="submit"  class="btn btn-primary py-3 px-5">Wyślij</button>
+                  {% comment %} <input type="submit" value="Wyślij wiadomość" class="btn btn-primary py-3 px-5"> {% endcomment %}
                 </div>
               </form>
             </div>
